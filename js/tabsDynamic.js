@@ -158,7 +158,7 @@
         
         }).catch(function(error){
             $('#ModalSearchDeatils').modal("hide");
-            swal("Error",error,"warning");
+            swal("Error",error.toString(),"warning");
         });
     });
    
@@ -208,7 +208,7 @@
         
         }).catch(function(error){
             $('#ModalSearchDeatils').modal("hide");
-            swal("Error",error,"warning");
+            swal("Error",error.toString(),"warning");
         });
     });
 
@@ -236,7 +236,7 @@
                 $("#estado_edit").val(data.productos["estado"]);
 
         }).catch(function(error){
-            swal("Error",error,"warning");
+            swal("Error",error.toString(),"warning");
         });
 
 
@@ -1348,11 +1348,11 @@
                 
                 
             }else{
-                swal("Ocurrio un problema",data,"warning");
+                swal("Productos", "No hay productos registrados","info");
             }
             
         }).catch(function(error){
-                  swal("Error",error,"warning");
+                  swal("Error",error.toString(),"warning");
         });
     }
 
@@ -1464,11 +1464,11 @@
                 
                 
             }else{
-                swal("Ocurrio un problema",data,"warning");
+                swal("Usuarios", "No hay usuarios registrados","warning");
             }
             
         }).catch(function(error){
-            swal("Error",error,"warning");
+            swal("Error",error.toString(),"warning");
         });
       
     }
@@ -1649,7 +1649,7 @@
             }
             
         }).catch(function(error){
-                  swal("Error",error,"warning");
+                  swal("Error",error.toString(),"warning");
         });
     }
 
