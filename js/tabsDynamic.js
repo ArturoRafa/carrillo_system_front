@@ -908,8 +908,9 @@
                                 postRequestForm(`https://${ipp}/api/usuarios/admin/ventas`, {fecha:fecha})
                                 .then(function(data)
                                 { 
-                                  $('#titulo_venta').text('Ventas Totales en Pesos.');
-                                  $('#ventas_total_diaria').text('Para la fecha '+fecha+' se vendío '+data.total+' $COP');
+                                  $('#titulo_venta').text('Ventas Totales en Pesos: '+ fecha);
+                                  $('#ventas_total_diaria').text('Dinero Facturado: '+data.total+' $COP');
+                                  $('#ventas_total_diaria_efectivo').text('Dinero en Efectivo: '+data.total_efectivo+' $COP');
                                         
                                 }).catch(function(error){                                    
                                    swal("Hubo un error", error.toString(),"warning");                                                                       
