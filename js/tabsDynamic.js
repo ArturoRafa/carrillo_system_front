@@ -1079,7 +1079,7 @@
             }
             
         }).catch(function(error){
-                  swal("Error",error.toString(),"warning");
+                  console.log(error.toString());
         });
     }
 

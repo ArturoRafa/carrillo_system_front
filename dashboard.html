@@ -399,7 +399,7 @@
         $(function () {
             initComponent(); 
             searchNotifications(2);
-            setInterval(searchNotifications, 3600000);   //se repite cada hora 36000000
+            setInterval(function(){searchNotifications}, 3600000);   //se repite cada hora 36000000
         });
     </script>
 </body>
