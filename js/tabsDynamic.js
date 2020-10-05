@@ -24,7 +24,7 @@
         var status = $(this).attr('aria-pressed');
         var data_item = $(this).data('item');
         if(status == "false"){
-            postRequestForm(`http://${ipp}/api/notificaciones/leida/${data_item}`, '')
+            postRequestForm(`https://${ipp}/api/notificaciones/leida/${data_item}`, '')
             .then(function(data){
                 searchNotifications(2);
             })
@@ -43,7 +43,7 @@
             valores.push($(this).html());
         }); 
         id = valores[0];
-        getRequestForm(`http://${ipp}/api/bauches/detalle/${id}`)
+        getRequestForm(`https://${ipp}/api/bauches/detalle/${id}`)
         .then(function(data) {             
             
             
@@ -90,7 +90,7 @@
             valores.push($(this).html());
         }); 
         id = valores[0];
-        getRequestForm(`http://${ipp}/api/bauches/detalle/${id}`)
+        getRequestForm(`https://${ipp}/api/bauches/detalle/${id}`)
         .then(function(data) {             
             $("#id_bauch_edit").val(data.bauche["id"]);
             $("#fechini_bauch_edit").val(data.bauche["fecha_ingreso"]);
@@ -119,7 +119,7 @@
             valores.push($(this).html());
         }); 
         id = valores[0];
-        getRequestForm(`http://${ipp}/api/bauches/detalle/${id}`)
+        getRequestForm(`https://${ipp}/api/bauches/detalle/${id}`)
         .then(function(data) {             
             
             $("#fecha_fac_fact").text(data.ok["fecha_facturacion"]);
@@ -137,7 +137,7 @@
             var item = 0;
             for (var i = 0; i < array_productos.length; i++) {
                 item = array_productos[i]["id_producto"]
-                getRequestForm(`http://${ipp}/api/productos/detalle/${item}`)
+                getRequestForm(`https://${ipp}/api/productos/detalle/${item}`)
                 .then(function(data) {
                     
                     var TableRow = "<tr>"+
@@ -169,7 +169,7 @@
             valores.push($(this).html());
         }); 
         codigo = valores[0];
-        getRequestForm(`http://${ipp}/api/facturas/detalle/${codigo}`)
+        getRequestForm(`https://${ipp}/api/facturas/detalle/${codigo}`)
         .then(function(data) {             
             
             $("#fecha_fac_fact").text(data.ok["fecha_facturacion"]);
@@ -187,7 +187,7 @@
             var item = 0;
             for (var i = 0; i < array_productos.length; i++) {
                 item = array_productos[i]["id_producto"]
-                getRequestForm(`http://${ipp}/api/productos/detalle/${item}`)
+                getRequestForm(`https://${ipp}/api/productos/detalle/${item}`)
                 .then(function(data) {
                     
                     var TableRow = "<tr>"+
@@ -219,7 +219,7 @@
             valores.push($(this).html());
         }); 
         id = valores[1];
-        getRequestForm(`http://${ipp}/api/productos/detalle/${id}`)
+        getRequestForm(`https://${ipp}/api/productos/detalle/${id}`)
         .then(function(data) {
                 $('#myModalEditProducto').modal("show");
                 $("#id_produc_edit").val(data.productos["id"]);
@@ -261,7 +261,7 @@
             })
             .then((willDelete) => {
               if (willDelete.dismiss != "cancel") {
-                postRequestForm(`http://${ipp}/api/usuarios/eliminar`,{cedula:cedula} )
+                postRequestForm(`https://${ipp}/api/usuarios/eliminar`,{cedula:cedula} )
                     .then(function(data){ 
                         if(data.usuarios){
                             swal("Usuario Eliminado Exitosamente", "", "info")
@@ -447,7 +447,7 @@
                               var cantidad = $('#cantidad').val();
                               //var imagen = document.getElementById('input-file-now');
 
-                              postRequestForm(`http://${ipp}/api/productos`, {codigo_barras:codigo_barras, 
+                              postRequestForm(`https://${ipp}/api/productos`, {codigo_barras:codigo_barras, 
                                 estado:1, precio_venta:precio_venta, precio_compra: precio_compra, marca: marca, modelo: modelo,
                                 garantia : garantia, cantidad_disponible : cantidad, color:color, descripcion: descripcion, tipo_producto:tipo_prod})
                                 .then(function(data){ 
@@ -485,7 +485,7 @@
                                 event.preventDefault();
                                 var cedula = $('#cedula_cliente_historial').val();
                                 
-                                getRequestForm(`http://${ipp}/api/usuarios/historial-compra/${cedula}`)
+                                getRequestForm(`https://${ipp}/api/usuarios/historial-compra/${cedula}`)
                                     .then(function(data){
                                             if(data.historial["factura"].length < 1){
                                                 swal("El usuario no posee compras","","info");
@@ -571,7 +571,7 @@
                               var anticipo_bauch = $('#anticipo_bauch').val();
                               var resta_bauch = $('#resta_bauch').val();
  
-                                postRequestForm(`http://${ipp}/api/bauches`, 
+                                postRequestForm(`https://${ipp}/api/bauches`, 
                                     {fecha_ingreso:fecha_ingreso, cedula:cedula, 
                                         fecha_salida:fecha_salida,fecha_reparado:fecha_reparado, nombre: name_bauch, 
                                         telefono: telf_bauch, estado: 0,
@@ -721,7 +721,7 @@
                               }
                               
 
-                              postRequestForm(`http://${ipp}/api/facturas`, {num_factura:numero_fact, 
+                              postRequestForm(`https://${ipp}/api/facturas`, {num_factura:numero_fact, 
                                 fecha_facturacion:fecha_fact , cedula_usuario:cedula_fact, nombre:name_fact, telefono:tel_fact, 
                                 total:total_fact}, detalleFactura)
                                 .then(function(data){ 
@@ -787,7 +787,7 @@
                                 var correo = $('#correo').val();
                                 var telefono = $('#telefono').val();
 
-                                postRequestForm(`http://${ipp}/api/public/usuarios/registrar`, {cedula:cedula, nombre:nombre, email:correo, telefono: telefono, tipo_usuario: 0}  )
+                                postRequestForm(`https://${ipp}/api/public/usuarios/registrar`, {cedula:cedula, nombre:nombre, email:correo, telefono: telefono, tipo_usuario: 0}  )
                                 .then(function(data){
                                     if(data.ok){
                                         swal("Registro Exitoso!", "Haz click para continuar!", "success");
@@ -812,7 +812,7 @@
                                 var cedula = $('#cedula_cliente_bauche').val();
                                 var ced = cedula.split('-');
                                 cedula = ced[1];
-                                getRequestForm(`http://${ipp}/api/bauches/detalle_user/${cedula}`)
+                                getRequestForm(`https://${ipp}/api/bauches/detalle_user/${cedula}`)
                                 .then(function(data)
                                 {                                     
                                     
@@ -905,7 +905,7 @@
                                     swal("Ingrese fecha", "","warning");
                                     return false;
                                 }
-                                postRequestForm(`http://${ipp}/api/usuarios/admin/ventas`, {fecha:fecha})
+                                postRequestForm(`https://${ipp}/api/usuarios/admin/ventas`, {fecha:fecha})
                                 .then(function(data)
                                 { 
                                   $('#titulo_venta').text('Ventas Totales en Pesos.');
@@ -928,7 +928,7 @@
                               var codg = $('#item_id_').val();
                               var cantd = $('#item_cant_').val();
 
-                              postRequestForm(`http://${ipp}/api/usuarios/compraRapida`, {codigo:codg, 
+                              postRequestForm(`https://${ipp}/api/usuarios/compraRapida`, {codigo:codg, 
                                 cantidad:cantd})
                                 .then(function(data){  
                                     if(data.ok == 'Inventario actualizado'){
@@ -977,7 +977,7 @@
 
 
     function searchNotifications(search = 2){
-        getRequestForm(`http://${ipp}/api/notificaciones`)
+        getRequestForm(`https://${ipp}/api/notificaciones`)
         .then(function(data) {
             
             if(search == 2){
@@ -1182,7 +1182,7 @@
         var anticipo = $('#anticipo_edit').val();
         var resta = $('#resta_edit').val();        
         
-        putRequestForm(`http://${ipp}/api/bauches/${id}`,{
+        putRequestForm(`https://${ipp}/api/bauches/${id}`,{
         fecha_ingreso:fech_ing, 
         fecha_salida:fech_sal,fecha_reparado:fech_rep, nombre: nombre, 
         telefono: telefono, direccion: direccion, tipo_equipo: tipo_equipo,
@@ -1254,7 +1254,7 @@
             $("#"+id+" #tableInventory").dataTable().fnClearTable();
             $("#"+id+" #tableInventory").dataTable().fnDestroy();
         }
-        getRequestForm(`http://${ipp}/api/productos`)
+        getRequestForm(`https://${ipp}/api/productos`)
         .then(function(data) {
             if(data.productos && data.productos.length > 0){
 
@@ -1372,7 +1372,7 @@
         var cantidad = $('#cantidad_edit').val();
         var estado = $('#estado_edit').val();
 
-        putRequestForm(`http://${ipp}/api/productos/${id}`,{codigo_barras:codigo_barras, 
+        putRequestForm(`https://${ipp}/api/productos/${id}`,{codigo_barras:codigo_barras, 
                                 estado:estado, precio_venta:precio_venta, precio_compra: precio_compra, 
                                 marca: marca, modelo: modelo,
                                 garantia : garantia, cantidad_disponible : cantidad, color:color, descripcion: descripcion, tipo_producto:tipo_prod} )
@@ -1392,7 +1392,7 @@
             $("#"+id+" #tableClientes").dataTable().fnClearTable();
             $("#"+id+" #tableClientes").dataTable().fnDestroy();
         }
-        getRequestForm(`http://${ipp}/api/usuarios`)
+        getRequestForm(`https://${ipp}/api/usuarios`)
         .then(function(data) {
             if(data.usuarios && data.usuarios.length > 0){
                 
@@ -1477,7 +1477,7 @@
     function cargarBauchesAtencion(id, admin = 2){
         
         
-            getRequestForm(`http://${ipp}/api/bauches`)
+            getRequestForm(`https://${ipp}/api/bauches`)
             .then(function(data) {
                 if(admin == 2){
                     if ( $.fn.DataTable.isDataTable("#"+id+" #tableBauchesList") && $("#"+id+" #tableBauchesList").length > 0) {
@@ -1610,7 +1610,7 @@
             $("#"+id+" #tableServicio").dataTable().fnClearTable();
             $("#"+id+" #tableServicio").dataTable().fnDestroy();
         }
-        getRequestForm(`http://${ipp}/api/productos`)
+        getRequestForm(`https://${ipp}/api/productos`)
         .then(function(data) {
                         
             if(data.productos && data.productos.length  > 0){
@@ -1668,7 +1668,7 @@
             $("#"+id+" #tableServicio").dataTable().fnClearTable();
             $("#"+id+" #tableServicio").dataTable().fnDestroy();
 
-            getRequestForm(`http://${ipp}/api/productos?codigo=${barras_servicio}`)
+            getRequestForm(`https://${ipp}/api/productos?codigo=${barras_servicio}`)
             .then(function(data) {
                 
                 
@@ -1729,7 +1729,7 @@
             $("#"+id+" #tableBauchesList").dataTable().fnClearTable();
             $("#"+id+" #tableBauchesList").dataTable().fnDestroy();
 
-            getRequestForm(`http://${ipp}/api/bauches?fecha=${fech_servicio}`)
+            getRequestForm(`https://${ipp}/api/bauches?fecha=${fech_servicio}`)
             .then(function(data) {
                 
                 if(data.bauche && data.bauche.length  > 0){

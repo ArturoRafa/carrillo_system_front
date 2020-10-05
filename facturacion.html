@@ -196,7 +196,7 @@
 
 $("#cedula_fact").blur(function() {
     var cedula = $('#cedula_fact').val();
-    getRequestForm(`http://${ipp}/api/usuarios/detalle/${cedula}`)
+    getRequestForm(`https://${ipp}/api/usuarios/detalle/${cedula}`)
         .then(function(data) {
             var nombre_user_f = data.usuario["nombre"];            
             var tel_user_f = data.usuario["telefono"];
@@ -233,7 +233,7 @@ $("html body").on('blur','#item_codigo',function() {
     }
 
     
-    getRequestForm(`http://${ipp}/api/productos/detalle/${codigo}`)
+    getRequestForm(`https://${ipp}/api/productos/detalle/${codigo}`)
         .then(function(data) {
             var id_f = data.productos["id"];
             var descrip_f = data.productos["descripcion"];            

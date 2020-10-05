@@ -78,7 +78,7 @@ $("html body").on('blur','#codigo_venta_rapida',function() {
     }
 
     
-    getRequestForm(`http://${ipp}/api/productos/detalle/${codigo}`)
+    getRequestForm(`https://${ipp}/api/productos/detalle/${codigo}`)
         .then(function(data) {
             var id_f = data.productos["codigo_barras"];
             var descrip_f = data.productos["descripcion"];            
