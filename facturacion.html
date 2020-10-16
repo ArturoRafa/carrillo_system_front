@@ -189,14 +189,11 @@
 </div>
 
 <script>
-! function(window, document, $) {
-    "use strict";
-    $("#formTabFactura input").not("[type=submit]").jqBootstrapValidation()
-}(window, document, jQuery);
 
 
 $(document).ready(function () {
 
+   
     $("#cedula_fact").blur(function() {
         var cedula = $('#cedula_fact').val();
         getRequestForm(`https://${ipp}/api/usuarios/detalle/${cedula}`)
@@ -250,9 +247,6 @@ $(document).ready(function () {
                 $('#item_cant_'+item).attr('max',cantid_f);
 
 
-                $(":input").jqBootstrapValidation("destroy");
-                $("#formTabFactura input").not("[type=submit]").jqBootstrapValidation();
-
 
             }).catch(function(error){
                 swal("No se encuentra el productouto","Verifique el código!","warning");
@@ -277,6 +271,20 @@ $(document).ready(function () {
         }
         
         $('#total_fact').val(total);
+
+    });
+
+
+    
+
+    $("#formTabFactura").submit(function( e ) {
+        e.preventDefault();
+
+        $("#formTabFactura input").not("[type=submit]").jqBootstrapValidation();
+
+        if ($("#formTabFactura").jqBootstrapValidation("hasErrors")) {
+          return false;
+        }
 
     });
 
