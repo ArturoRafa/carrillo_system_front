@@ -191,7 +191,7 @@
 <script>
 ! function(window, document, $) {
     "use strict";
-    $("#formTabFactura input").not("#tableFacturacion input").not("[type=submit]").jqBootstrapValidation()
+    $("#formTabFactura input").not("[type=submit]").jqBootstrapValidation()
 }(window, document, jQuery);
 
 $("#cedula_fact").blur(function() {
@@ -245,6 +245,10 @@ $("html body").on('blur','#item_codigo',function() {
             $('#item_price_'+item).val(pventa_f);
             $('#item_disponible_'+item).val(cantid_f);
             $('#item_cant_'+item).attr('max',cantid_f);
+
+
+            $("#formTabFactura input").jqBootstrapValidation('destroy');
+            $("#formTabFactura input").not("[type=submit]").jqBootstrapValidation();
 
 
         }).catch(function(error){
