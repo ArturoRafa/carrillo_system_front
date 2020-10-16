@@ -77,7 +77,7 @@
                                 <td><input type="text" readonly="" class="form-control" id="item_name_0" name="item_name[]"></td>
                                 <td><input type="text" readonly="" class="form-control" id="item_price_0" name="item_price[]"></td>
                                 <td><input type="number" readonly="" class="form-control" id="item_disponible_0" name="item_disponible[]"></td>
-                                <td><input type="number" class="form-control cantidad_solit" min="0" max="1" onkeyup="validateNumber(0)"  id="item_cant_0" name="item_cant[]"></td>
+                                <td><input type="number" class="form-control cantidad_solit" min="0" max="1" onchange="validateNumber('0')"  id="item_cant_0" name="item_cant[]"></td>
                                 <td class="text-center">  
                                   <button disabled="disabled" class="btn btn-danger button_eliminar"><span><i class="fas fa-trash-alt"></i></span></button>
                                </td>
@@ -266,7 +266,7 @@ $("html body").on('blur','.cantidad_solit',function() {
     var leng = $('input[name="item_price[]"]').length;
     
     for (var i = 0; i < leng; i++) {
-        total = total + parseInt(inputPrice[i].value) * parseInt(inputCant[i].value);
+        total = total + parseInt(inputPrice[i].value) * ( parseInt(inputCant[i].value) ? parseInt(inputCant[i].value) : 0);
     }
     
     $('#total_fact').val(total);
