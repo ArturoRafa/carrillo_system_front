@@ -692,25 +692,29 @@
                           }
                        });
 
-                       $("#formTabFactura input").jqBootstrapValidation ({
-                            
-                            submitSuccess : function (form, event) { 
-                              event.preventDefault();    
-                              var fecha_fact = $('#bauchdate_fact').val();
-                              var numero_fact = $('#numero_fact').val();
-                              var cedula_fact = $('#cedula_fact').val();
-                              var name_fact = $('#name_fact').val();
-                              var tel_fact = $('#tel_fact').val();
-                              var total_fact = $('#total_fact').val();
+                        $(document).on('submit', "#formTabFactura", function( event ) {
+                            event.preventDefault();   
+                            $("#formTabFactura input").jqBootstrapValidation('destroy');
+                            $("#formTabFactura input").not("[type=submit]").jqBootstrapValidation();
 
-                              var inputIds = $('input[name="item_id[]"]').slice();
-                              var inputPrice = $('input[name="item_price[]"]').slice();
-                              var inputName = $('input[name="item_name[]"]').slice();
-                              var inputCant = $('input[name="item_cant[]"]').slice();
-                              
-                              var leng = $('input[name="item_id[]"]').length;
-                              var detalleFactura = [];
-                              for (var i = 0; i < leng; i++) {
+                            if (!$("#formTabFactura").jqBootstrapValidation("hasErrors")) {
+
+                                 
+                                var fecha_fact = $('#bauchdate_fact').val();
+                                var numero_fact = $('#numero_fact').val();
+                                var cedula_fact = $('#cedula_fact').val();
+                                var name_fact = $('#name_fact').val();
+                                var tel_fact = $('#tel_fact').val();
+                                var total_fact = $('#total_fact').val();
+
+                                var inputIds = $('input[name="item_id[]"]').slice();
+                                var inputPrice = $('input[name="item_price[]"]').slice();
+                                var inputName = $('input[name="item_name[]"]').slice();
+                                var inputCant = $('input[name="item_cant[]"]').slice();
+
+                                var leng = $('input[name="item_id[]"]').length;
+                                var detalleFactura = [];
+                                for (var i = 0; i < leng; i++) {
                                    
                                    detalleFactura.push({id_producto:inputIds[i].value, 
                                                         precio: inputPrice[i].value,
@@ -718,15 +722,13 @@
                                                         cantidad: inputCant[i].value
                                                     });
                                    
-                              }
+                                }
                               
 
                               postRequestForm(`https://${ipp}/api/facturas`, {num_factura:numero_fact, 
                                 fecha_facturacion:fecha_fact , cedula_usuario:cedula_fact, nombre:name_fact, telefono:tel_fact, 
                                 total:total_fact}, detalleFactura)
                                 .then(function(data){ 
-                                    
-                                    
                                         
                                         swal({
                                           title: "Factura Generada Exitosamente",
@@ -760,7 +762,7 @@
                                                   '<td class="text-right">'+(parseInt(detalleFactura[i].precio)*(parseInt(detalleFactura[i].cantidad)))+'</td>'+
                                                 '</tr>';
                                                 $("#cuerpo_tabla_print").append(tr)
-                                              }
+                                            }
 
                                         });
                                        
